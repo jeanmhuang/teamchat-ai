@@ -69,7 +69,7 @@ export default function ChatApp() {
 
   const loadMessages = async (channelId: string) => {
     const { data } = await supabase
-      .from('messages')
+      .from('chat_messages')
       .select('*')
       .eq('channel_id', channelId)
       .order('created_at', { ascending: true })
@@ -88,7 +88,7 @@ export default function ChatApp() {
         {
           event: 'INSERT',
           schema: 'public',
-          table: 'messages',
+          table: 'chat_messages',
           filter: `channel_id=eq.${channelId}`,
         },
         (payload) => {
@@ -111,7 +111,7 @@ export default function ChatApp() {
 
     // Insert user message
     const { data: userMsg } = await supabase
-      .from('messages')
+      .from('chat_messages')
       .insert({
         channel_id: activeChannel.id,
         user_name: userName,
@@ -140,7 +140,7 @@ export default function ChatApp() {
         const data = await response.json()
 
         if (data.response) {
-          await supabase.from('messages').insert({
+          await supabase.from('chat_messages').insert({
             channel_id: activeChannel.id,
             user_name: 'Claude',
             content: data.response,
