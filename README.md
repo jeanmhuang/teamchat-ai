@@ -107,12 +107,6 @@ To give Claude access to your own docs, use the same `knowledge_base` table from
 
 ---
 
-## Resume Line
-
-> Built a real-time team chat with WebSocket messaging and an AI assistant that responds to @mentions. Supabase Realtime, OpenAI, RAG pipeline for knowledge retrieval.
-
----
-
 ## Project Structure
 
 ```
